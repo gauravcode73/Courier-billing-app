@@ -17,56 +17,20 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<User | null>({ username: 'admin' });
+  const [token, setToken] = useState<string | null>('bypass_token');
+  const [isLoading, setIsLoading] = useState(false);
 
   const logout = () => {
-    localStorage.removeItem('amodxpress_token');
-    setToken(null);
-    setUser(null);
-    delete api.defaults.headers.common['Authorization'];
+    // Bypassed
   };
 
   const login = async (username: string, password: string) => {
-    try {
-      const response = await api.post('/auth/login', { username, password });
-      const { token: receivedToken, user: receivedUser } = response.data;
-      
-      localStorage.setItem('amodxpress_token', receivedToken);
-      setToken(receivedToken);
-      setUser(receivedUser);
-      api.defaults.headers.common['Authorization'] = `Bearer ${receivedToken}`;
-    } catch (err: any) {
-      throw new Error(err.response?.data?.error || 'Login failed');
-    }
+    // Bypassed
   };
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const storedToken = localStorage.getItem('amodxpress_token');
-      if (!storedToken) {
-        setIsLoading(false);
-        return;
-      }
-
-      try {
-        setToken(storedToken);
-        const res = await api.get('/auth/verify');
-        if (res.data.valid) {
-          setUser(res.data.user);
-        } else {
-          logout();
-        }
-      } catch (err) {
-        console.error('Session validation failed:', err);
-        logout();
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuth();
+    // Bypassed
   }, []);
 
   const value = {

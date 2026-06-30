@@ -92,16 +92,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           })}
         </nav>
 
-        {/* Logout Action */}
-        <div className="p-4 border-t border-slate-800">
-          <button
-            onClick={handleLogout}
-            className="flex items-center justify-center gap-3 w-full bg-slate-800/60 hover:bg-red-950/20 hover:text-red-400 border border-slate-700/40 hover:border-red-900/30 text-slate-300 font-medium py-2.5 rounded-lg text-sm transition-all duration-150 active:scale-95"
-          >
-            <LogOut size={16} />
-            <span>Sign Out</span>
-          </button>
-        </div>
+
       </aside>
 
       {/* Main Content Area */}
@@ -196,15 +187,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                   })}
                 </nav>
 
-                <div className="p-4 border-t border-slate-800">
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center justify-center gap-3 w-full bg-slate-800/60 hover:bg-red-950/20 hover:text-red-400 border border-slate-700/40 hover:border-red-900/30 text-slate-300 font-medium py-2.5 rounded-lg text-sm transition-all duration-150"
-                  >
-                    <LogOut size={16} />
-                    <span>Sign Out</span>
-                  </button>
-                </div>
+
               </motion.aside>
             </>
           )}

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { 
   LayoutDashboard, 
   PlusCircle, 
   Search, 
   BarChart3, 
-  LogOut, 
   Menu, 
   X,
   Package,
@@ -16,8 +15,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -27,11 +25,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     { name: 'Search Bills', href: '/search', icon: Search },
     { name: 'Daily Reports', href: '/reports', icon: BarChart3 },
   ];
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
 
   const currentPathName = navigation.find(item => item.href === location.pathname)?.name || 'Consignment System';
 

@@ -35,13 +35,14 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-// API Routes
-app.use('/api', apiRoutes);
-
 // Base route health check
 app.get('/health', (_req: Request, res: Response) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
+
+// API Routes
+app.use('/api', apiRoutes);
+app.use('/', apiRoutes); // Fallback for rewritten/stripped paths in Vercel Services
 
 // Centralized error handler middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
